@@ -1,4 +1,6 @@
 Comedy::Application.routes.draw do
+  resources :tours
+
   resources :comedians
 
   devise_for :users
