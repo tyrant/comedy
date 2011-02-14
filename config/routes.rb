@@ -1,4 +1,6 @@
 Comedy::Application.routes.draw do
+  resources :videos
+
   resources :gigs
 
   resources :tours
