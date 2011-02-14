@@ -1,0 +1,23 @@
+<h1>Listing comedians</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @comedians.each do |comedian| %>
+  <tr>
+    <td><%= comedian.name %></td>
+    <td><%= link_to 'Show', comedian %></td>
+    <td><%= link_to 'Edit', edit_comedian_path(comedian) %></td>
+    <td><%= link_to 'Destroy', comedian, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Comedian', new_comedian_path %>

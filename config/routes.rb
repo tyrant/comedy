@@ -1,4 +1,6 @@
 Comedy::Application.routes.draw do
+  resources :comedians
+
   devise_for :users
 
   # The priority is based upon order of creation:
