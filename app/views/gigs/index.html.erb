@@ -1,0 +1,25 @@
+<h1>Listing gigs</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Tour</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @gigs.each do |gig| %>
+  <tr>
+    <td><%= gig.name %></td>
+    <td><%= gig.tour %></td>
+    <td><%= link_to 'Show', gig %></td>
+    <td><%= link_to 'Edit', edit_gig_path(gig) %></td>
+    <td><%= link_to 'Destroy', gig, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Gig', new_gig_path %>
