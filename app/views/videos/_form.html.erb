@@ -16,8 +16,12 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
+    <%= f.label :url %><br />
+    <%= f.text_field :url %>
+  </div>
+  <div class="field">
     <%= f.label :gig %><br />
-    <%= f.text_field :gig %>
+    <%= select(:videos, :gig_id, Gig.all.collect {|g| [g.name, g.id]}) %>
   </div>
   <div class="actions">
     <%= f.submit %>

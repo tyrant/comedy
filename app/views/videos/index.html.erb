@@ -3,6 +3,7 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>URL</th>
     <th>Gig</th>
     <th></th>
     <th></th>
@@ -12,7 +13,8 @@
 <% @videos.each do |video| %>
   <tr>
     <td><%= video.name %></td>
-    <td><%= video.gig %></td>
+    <td><%= video.url %></td>
+    <td><%= link_to video.gig.to_s, video.gig %></td>
     <td><%= link_to 'Show', video %></td>
     <td><%= link_to 'Edit', edit_video_path(video) %></td>
     <td><%= link_to 'Destroy', video, :confirm => 'Are you sure?', :method => :delete %></td>

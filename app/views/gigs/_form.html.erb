@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :tour %><br />
-    <%= f.text_field :tour %>
+    <%= select(:gig_id, :tours, Tour.all.collect {|t| [t.name, t.id]}) %>
   </div>
   <div class="actions">
     <%= f.submit %>

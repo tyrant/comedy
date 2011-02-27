@@ -3,6 +3,7 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>Comedians</th>
     <th></th>
     <th></th>
     <th></th>
@@ -11,6 +12,11 @@
 <% @tours.each do |tour| %>
   <tr>
     <td><%= tour.name %></td>
+    <td>
+      <% tour.get_comedians.each do |c| %>
+        <%= link_to c.name, c %>&nbsp;
+      <% end %>
+    </td>
     <td><%= link_to 'Show', tour %></td>
     <td><%= link_to 'Edit', edit_tour_path(tour) %></td>
     <td><%= link_to 'Destroy', tour, :confirm => 'Are you sure?', :method => :delete %></td>
