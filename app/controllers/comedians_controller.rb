@@ -57,6 +57,13 @@ class ComediansController < ApplicationController
   # PUT /comedians/1.xml
   def update
     @comedian = Comedian.find(params[:id])
+    params[:tours].delete("")
+
+    if params[:tours]
+      @comedian.tours = Tour.find(params[:tours])
+    else
+      @comedian.tours = []
+    end
 
     respond_to do |format|
       if @comedian.update_attributes(params[:comedian])

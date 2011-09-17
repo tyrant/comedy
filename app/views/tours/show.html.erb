@@ -1,10 +1,29 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
+  <strong>Name:</strong>
   <%= @tour.name %>
+</p>
+<p>
+  <strong>Comedians:</strong>
+  <% if @tour.comedians.length != 0 %>
+    <% @tour.comedians.each do |c| %>
+      <%= link_to c.name, c %>
+    <% end %>
+  <% else %>
+    (none)
+  <% end %>
+</p>
+<p>
+  <strong>Gigs:</strong>
+  <% if @tour.gigs.length != 0 %>
+    <% @tour.gigs.each do |g| %>
+      <%= link_to g.name, g %>
+    <% end %>
+  <% else %>
+    (none)
+  <% end %>
 </p>
 
 
-<%= link_to 'Edit', edit_tour_path(@tour) %> |
-<%= link_to 'Back', tours_path %>
+<%= link_to 'Edit', edit_tour_path(@tour) %> | <%= link_to 'Back', tours_path %>

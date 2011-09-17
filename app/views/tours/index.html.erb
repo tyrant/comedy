@@ -4,6 +4,7 @@
   <tr>
     <th>Name</th>
     <th>Comedians</th>
+    <th>Gigs</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,8 +14,21 @@
   <tr>
     <td><%= tour.name %></td>
     <td>
-      <% tour.get_comedians.each do |c| %>
-        <%= link_to c.name, c %>&nbsp;
+      <% if tour.comedians.length != 0 %>
+        <% tour.comedians.each do |c| %>
+          <%= link_to c.name, c %>
+        <% end %>
+      <% else %>
+        (none - <%= link_to "add one", new_comedian_path %>)
+      <% end %>
+    </td>
+    <td>
+      <% if tour.gigs.length != 0 %>
+        <% tour.gigs.each do |g| %>
+          <%= link_to g.name, g %>
+        <% end %>
+      <% else %>
+        (none - <%= link_to "add one", new_gig_path(:tour => tour.id) %>)
       <% end %>
     </td>
     <td><%= link_to 'Show', tour %></td>

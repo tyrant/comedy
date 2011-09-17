@@ -15,6 +15,12 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
+  
+  <div class="field">
+    <%= f.label :comedians %><br />
+    <%= select_tag(:comedians, options_for_select(Comedian.all.collect {|c| [c.name, c.id]}, @tour.comedians.collect {|c| c.id}), {:multiple => true, :include_blank => true}) %>
+  </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

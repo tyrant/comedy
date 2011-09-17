@@ -1,8 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
+  <strong>Name:</strong>
   <%= @comedian.name %>
+</p>
+<p>
+  <strong>Tours:</strong>
+  <% @comedian.tours.each do |t| %>
+    <%= link_to t.name, t %>
+  <% end %>
 </p>
 
 

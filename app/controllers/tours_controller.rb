@@ -57,7 +57,14 @@ class ToursController < ApplicationController
   # PUT /tours/1.xml
   def update
     @tour = Tour.find(params[:id])
+    params[:comedians].delete("")
 
+    if params[:comedians]
+      @tour.comedians = Comedian.find(params[:comedians])
+    else
+      @tour.comedians = []
+    end
+    
     respond_to do |format|
       if @tour.update_attributes(params[:tour])
         format.html { redirect_to(@tour, :notice => 'Tour was successfully updated.') }

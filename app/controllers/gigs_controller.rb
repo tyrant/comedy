@@ -41,7 +41,8 @@ class GigsController < ApplicationController
   # POST /gigs.xml
   def create
     @gig = Gig.new(params[:gig])
-
+    Tour.find(params[:gig][:tour_id]).gigs.push(@gig)
+    
     respond_to do |format|
       if @gig.save
         format.html { redirect_to(@gig, :notice => 'Gig was successfully created.') }
@@ -56,8 +57,14 @@ class GigsController < ApplicationController
   # PUT /gigs/1
   # PUT /gigs/1.xml
   def update
+    puts params[:gig][:tour_id]
+    puts Tour.find(params[:gig][:tour_id]).name
     @gig = Gig.find(params[:id])
-
+    puts @gig
+    @gig.tour = Tour.find(params[:gig][:tour_id])
+    puts @gig.tour
+    @gig.save
+    
     respond_to do |format|
       if @gig.update_attributes(params[:gig])
         format.html { redirect_to(@gig, :notice => 'Gig was successfully updated.') }
