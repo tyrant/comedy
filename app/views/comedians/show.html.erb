@@ -4,10 +4,26 @@
   <strong>Name:</strong>
   <%= @comedian.name %>
 </p>
+
+<p>
+  <strong>Gigs:</strong>
+  <% if @comedian.gigs.length > 0 %>
+    <% @comedian.gigs.each do |g| %>
+      <%= link_to g.name, g %>
+    <% end %>
+  <% else %>
+    No gigs
+  <% end %>
+</p>
+
 <p>
   <strong>Tours:</strong>
-  <% @comedian.tours.each do |t| %>
-    <%= link_to t.name, t %>
+  <% if @comedian.tours.length > 0 %>
+    <% @comedian.tours.each do |t| %>
+      <%= link_to t.name, t %>
+    <% end %>
+  <% else %>
+    No tours
   <% end %>
 </p>
 

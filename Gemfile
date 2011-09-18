@@ -1,15 +1,17 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0'
+gem 'rails', '3.0.7'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem "mysql2", '~> 0.2.7' # Do 'sudo apt-get install libmysql-ruby libmysqlclient-dev' for Ubuntu
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'devise'
 gem 'cancan'
 #gem 'coffee-rails'
 #gem 'sass-rails'
+gem 'rspec-rails'
 
 # Use unicorn as the web server
 # gem 'unicorn'

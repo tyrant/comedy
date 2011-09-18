@@ -15,10 +15,15 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
+  
+  <div class="field">
+    <%= f.label :gigs %><br />
+    <%= select_tag(:gigs, options_for_select(@all_gigs.collect {|g| [g.name, g.id]}, @comedian.gigs.collect {|g| g.id}), {:multiple => true, :include_blank => true}) %>
+  </div>
 
   <div class="field">
     <%= f.label :tours %><br />
-    <%= select_tag(:tours, options_for_select(Tour.all.collect {|t| [t.name, t.id]}, @comedian.tours.collect {|t| t.id}), {:multiple => true, :include_blank => true}) %>
+    <%= select_tag(:tours, options_for_select(@all_tours.collect {|t| [t.name, t.id]}, @comedian.tours.collect {|t| t.id}), {:multiple => true, :include_blank => true}) %>
   </div>
     
   <div class="actions">
