@@ -71,3 +71,125 @@ Tour.all.each { |t| t.destroy }
   :phone => '01553 764 864',
   :url => 'http://kingslynncornexchange.co.uk'
 )
+
+
+@dylanmoran = Comedian.create!(:user => @user1, :name => 'Dylan Moran')
+@yeahyeah = Tour.create!(:name => 'yeah, yeah')
+Gig.create!(
+  :tour => @yeahyeah,
+  :date => '2011-09-09',
+  :venue => "Canberra Theatre, Canberra",
+  :lat => -35.313164,
+  :lng => 149.087563,
+  :phone => '',
+  :url => 'http://www.canberratheatrecentre.com.au/what-is-on/event-details.aspx?eventID=7382'
+)
+
+Gig.create!(
+  :tour => @yeahyeah,
+  :date => '2011-09-10',
+  :venue => "Palais Theatre, Melbourne",
+  :lat => -35.313164,
+  :lng => 149.087563,
+  :phone => '',
+  :url => 'http://www.ticketmaster.com.au/even/120046E1A8FD6728?artistid=952480&majorcatid=10002&minorcatid=51'
+)
+
+Gig.create!(
+  :tour => @yeahyeah,
+  :date => '2011-10-05',
+  :venue => 'Vicar Street, Dublin',
+  :lat => 53.342673,
+  :lng => -6.277732,
+  :phone => '+353 1 454 5533',
+  :url => 'http://www.ticketmaster.ie/search?tm_link=tm_homeA_header_search&q=dylan+moran&search.x=0&search.y=0'
+)
+
+Gig.create!(
+  :tour => @yeahyeah,
+  :date => '2011-10-06',
+  :venue => 'Vicar Street, Dublin',
+  :lat => 53.342673,
+  :lng => -6.277732,
+  :phone => '+353 1 454 5533',
+  :url => 'http://www.ticketmaster.ie/search?tm_link=tm_homeA_header_search&q=dylan+moran&search.x=0&search.y=0'
+)
+
+Gig.create!(
+  :tour => @yeahyeah,
+  :date => '2011-10-07',
+  :venue => 'Vicar Street, Dublin',
+  :lat => 53.342673,
+  :lng => -6.277732,
+  :phone => '+353 1 454 5533',
+  :url => 'http://www.ticketmaster.ie/search?tm_link=tm_homeA_header_search&q=dylan+moran&search.x=0&search.y=0'
+)
+
+Gig.create!(
+  :tour => @yeahyeah,
+  :date => '2011-10-08',
+  :venue => 'Vicar Street, Dublin',
+  :lat => 53.342673,
+  :lng => -6.277732,
+  :phone => '+353 1 454 5533',
+  :url => 'http://www.ticketmaster.ie/search?tm_link=tm_homeA_header_search&q=dylan+moran&search.x=0&search.y=0'
+)
+
+Gig.create!(
+  :tour => @yeahyeah,
+  :date => '2011-10-09',
+  :venue => 'Vicar Street, Dublin',
+  :lat => 53.342673,
+  :lng => -6.277732,
+  :phone => '+353 1 454 5533',
+  :url => 'http://www.ticketmaster.ie/search?tm_link=tm_homeA_header_search&q=dylan+moran&search.x=0&search.y=0'
+)
+
+Gig.create!(
+  :tour => @yeahyeah,
+  :date => '2011-10-27',
+  :venue => 'Vicar Street, Dublin',
+  :lat => 53.342673,
+  :lng => -6.277732,
+  :phone => '+353 1 454 5533',
+  :url => 'http://www.ticketmaster.ie/search?tm_link=tm_homeA_header_search&q=dylan+moran&search.x=0&search.y=0'
+)
+
+Gig.create!(
+  :tour => @yeahyeah,
+  :date => '2011-10-28',
+  :venue => 'Vicar Street, Dublin',
+  :lat => 53.342673,
+  :lng => -6.277732,
+  :phone => '+353 1 454 5533',
+  :url => 'http://www.ticketmaster.ie/search?tm_link=tm_homeA_header_search&q=dylan+moran&search.x=0&search.y=0'
+)
+
+Gig.create!(
+  :tour => @yeahyeah,
+  :date => '2011-10-29',
+  :venue => 'Vicar Street, Dublin',
+  :lat => 53.342673,
+  :lng => -6.277732,
+  :phone => '+353 1 454 5533',
+  :url => 'http://www.ticketmaster.ie/search?tm_link=tm_homeA_header_search&q=dylan+moran&search.x=0&search.y=0'
+)
+
+Gig.create!(
+  :tour => @yeahyeah,
+  :date => '2011-10-30',
+  :venue => 'Galway Comedy Festival',
+  :lat => 52.270102,
+  :lng => -9.057755,
+  :phone => '+353 87 132 0463',
+  :url => 'http://www.galwaycomedyfestival.com'
+)
+
+Gig.create!(
+  :tour => @yeahyeah,
+  :date => '2011-10-25',
+  :venue => 'Millennium Forum, Derry',
+  :lat => 53.270102,
+  :lng => -9.057755,
+  :phone => '+44 28 7126 4455',
+  :url => 'www.millenniumforum.co.uk/index.php?view=details&id=182%3Adylan-moran-yeah-yeah&option=com_eventlist&Itemid=8'
