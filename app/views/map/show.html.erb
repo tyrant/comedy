@@ -1,0 +1,28 @@
+<% content_for :map do %>
+$(function() {
+  $("#date_range").slider({
+    step: 1,
+    min: <%= @months_ago %>,
+    max: <%= @months_since %>
+  });
+});
+<% end %>
+
+<div id="map_canvas"></div>
+<form id="select_gigs">
+  <h3>Comedian</h3>
+  <select id="comedian" name="comedian">
+    <% @comedians.each do |c| %>
+      <option value="<%= c.id %>"><%= c.name %></option>
+    <% end %>
+  </select>
+  <h3>Tour</h3>
+  <select id="tour" name="tour">
+    <% @tours.each do |t| %>
+      <option value="<%= t.id %>"><%= t.name %></option>
+    <% end %>
+  </select>
+  <h3>Date range</h3>
+  <div id="date_range"></div>
+  <input type="submit" id="update_gigs" value="Update" />
+</form>

@@ -12,6 +12,7 @@ gem 'cancan'
 #gem 'coffee-rails'
 #gem 'sass-rails'
 gem 'rspec-rails'
+gem 'jquery-rails'
 
 # Use unicorn as the web server
 # gem 'unicorn'
