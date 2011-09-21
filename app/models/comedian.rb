@@ -5,9 +5,11 @@ class Comedian < ActiveRecord::Base
 
   validates_presence_of :name
   
-  # Not all that efficient - rewrite later.
+  # Not all that efficient - rewrite later with a bit of ActiveRecord.
   def tours
     gigs.map { |g| g.tour }.compact.uniq
   end
+  
+  
   
 end

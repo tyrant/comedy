@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110918063755) do
+ActiveRecord::Schema.define(:version => 20110919052129) do
 
   create_table "comedians", :force => true do |t|
     t.string   "name"
@@ -29,12 +29,9 @@ ActiveRecord::Schema.define(:version => 20110918063755) do
     t.integer  "tour_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "venue"
     t.datetime "date"
-    t.string   "phone"
+    t.integer  "venue_id"
     t.string   "url"
-    t.float    "lat"
-    t.float    "lng"
   end
 
   create_table "tours", :force => true do |t|
@@ -61,6 +58,16 @@ ActiveRecord::Schema.define(:version => 20110918063755) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "venues", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.float    "lat"
+    t.float    "lng"
+    t.string   "phone"
+    t.string   "url"
+  end
 
   create_table "videos", :force => true do |t|
     t.string   "name"
