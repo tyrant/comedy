@@ -1,23 +1,62 @@
 <% content_for :map do %>
-$(function() {
+<script type="text/javascript">
+$(document).ready(function() {
+  var map = new google.maps.Map(document.getElementById("map_canvas"), {
+    zoom: 6,
+    center: new google.maps.LatLng(54.5, -2.0),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+  
   $("#date_range").slider({
     step: 1,
     min: <%= @months_ago %>,
     max: <%= @months_since %>
   });
+  
+  $("#select_gigs").submit(function() {
+    var self = $(this);
+    $.post(self.attr('action'), self.serialize(), function(gigs) {
+      //console.log(map);
+      map.clearVenues();
+      $.each(gigs, function(i, gig) {
+        if (gig.venue != undefined) {
+          var loc = new google.maps.LatLng(gig.venue.lat, gig.venue.lng);
+          var venue = map.getVenueForLocation(loc);
+          if (venue != undefined) {
+            venue.addGig(gig);
+          } else {
+            var newvenue = new google.maps.Marker({
+              position: loc,
+              map: map,
+              title: gig.venue.name
+            });
+            map.addVenue(newvenue);
+            newvenue.addGig(gig);
+          }            
+        }
+      });
+    }, 'json');
+    
+    return false;
+  });
+  $("#select_gigs").submit();
 });
+</script>
 <% end %>
 
-<div id="map_canvas"></div>
-<form id="select_gigs">
+<div id="map_canvas" style="width:100%; height:100%;"></div>
+
+<%= form_tag '/map/update_markers', :remote => true, :id => 'select_gigs' do %>
   <h3>Comedian</h3>
-  <select id="comedian" name="comedian">
+  <select id="comedian_id" name="comedian_id">
+    <option value="0">Everyone</option>
     <% @comedians.each do |c| %>
       <option value="<%= c.id %>"><%= c.name %></option>
     <% end %>
   </select>
   <h3>Tour</h3>
-  <select id="tour" name="tour">
+  <select id="tour_id" name="tour_id">
+    <option value="0">All tours</option>
     <% @tours.each do |t| %>
       <option value="<%= t.id %>"><%= t.name %></option>
     <% end %>
@@ -25,4 +64,4 @@ $(function() {
   <h3>Date range</h3>
   <div id="date_range"></div>
   <input type="submit" id="update_gigs" value="Update" />
-</form>
+<% end %>

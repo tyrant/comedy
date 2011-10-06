@@ -54,3 +54,34 @@ div.field, div.actions {
   font-size: 12px;
   list-style: square;
 }
+
+/* --- custom stuff --- */
+
+html { 
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#user_nav {
+  z-index: 1;
+  position: absolute;
+}
+
+
+#container, #map_canvas {
+  height: 100%;
+}
+
+#select_gigs {
+  z-index: 1;
+  position: absolute;
+  height: 100px;
+  width: 500px;
+  bottom: 150px;
+  left: 50px;
+}
