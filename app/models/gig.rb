@@ -7,11 +7,12 @@ class Gig < ActiveRecord::Base
   def as_json(options)
     gig = {
       'gig' => {
+        'date' => self.date,
         'tour_id' => self.tour.id
       }
     }
     unless self.venue.nil?
-      gig[:venue] = {
+      gig['gig']['venue'] = {
         'name' => self.venue.name,
         'lat' => self.venue.lat,
         'lng' => self.venue.lng

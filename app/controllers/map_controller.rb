@@ -12,6 +12,7 @@ class MapController < ApplicationController
   
   
   # Given a comedian ID, a tour ID, and a date range, return all gigs matching these constraints. Ajaxly. In JSON form.
+  # Return format: {:comedian1 => [{:gig => (gig)}, {:gig => (gig)}, ...], :comedian2 => ...}  
   
   # Meta-comment: ugh, so clunky. Surely there's an ActiveRecord-ish way of doing this more nicely? Or is the anti-ORM
   # buzz right, and you're better off using raw SQL on general principles?
@@ -22,6 +23,9 @@ class MapController < ApplicationController
       @tour = Tour.find(params[:tour_id].to_i)
       @gigs = @gigs.find_all {|g| g.tour == @tour } 
     end
+    
+
+    
     render :json => @gigs
   end
   

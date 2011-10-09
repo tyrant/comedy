@@ -1,6 +1,23 @@
 <% content_for :map do %>
 <script type="text/javascript">
 $(document).ready(function() {
+  // Quick note: document.venues is a list of map markers - each item in the array contains a Google map
+  // marker object, app-specific venue info, and a list of gigs.
+  document.venues = [];
+  
+  function clearVenues() {
+    _.each(document.venues, function(venue, i) {
+      venue.marker.setMap(null);
+    });
+    document.venues = [];
+  }
+  
+  function getVenueForLocation(loc) {
+    return _.find(document.venues, function(venue) {
+      return venue.marker.getPosition().equals(loc);
+    });
+  };
+  
   var map = new google.maps.Map(document.getElementById("map_canvas"), {
     zoom: 6,
     center: new google.maps.LatLng(54.5, -2.0),
@@ -13,33 +30,55 @@ $(document).ready(function() {
     max: <%= @months_since %>
   });
   
+  // Form submission: update marker list.
   $("#select_gigs").submit(function() {
     var self = $(this);
     $.post(self.attr('action'), self.serialize(), function(gigs) {
-      //console.log(map);
-      map.clearVenues();
-      $.each(gigs, function(i, gig) {
-        if (gig.venue != undefined) {
-          var loc = new google.maps.LatLng(gig.venue.lat, gig.venue.lng);
-          var venue = map.getVenueForLocation(loc);
-          if (venue != undefined) {
-            venue.addGig(gig);
-          } else {
-            var newvenue = new google.maps.Marker({
-              position: loc,
-              map: map,
-              title: gig.venue.name
-            });
-            map.addVenue(newvenue);
-            newvenue.addGig(gig);
-          }            
+      // Clear the map of all previous venues and gigs
+      clearVenues();
+
+      _.each(gigs, function(object, i) {
+
+        // For each gig returned, see if the gig's venue is added to the map. If so, add the gig
+        // to the venue's gigs array; if not, create a new venue marker, then add the gig to it. 
+        if (object.gig.venue != undefined) {
+          var loc = new google.maps.LatLng(object.gig.venue.lat, object.gig.venue.lng);
+          var venue = getVenueForLocation(loc);
+          if (venue == undefined) {
+            venue = {
+              marker: new google.maps.Marker({
+                position: loc,
+                map: map,
+                title: object.gig.venue.name
+              }),
+              info: {
+                name: object.gig.venue.name
+              },
+              gigs: []
+            };
+            document.venues.push(venue);
+          }
+          //console.log('Venue: ' + venue.info.name + '; gig: ' + object.gig.date);
+          venue.gigs.push(object.gig);
         }
       });
+
+      // All venue markers are now placed on the map - add an eventlistener to each one, to open
+      // an infowindow, which shows each gig playing at this venue.
+      _.each(document.venues, function(venue, i) {   
+        google.maps.event.addListener(venue.marker, 'click', function() {
+          var infowindow = new google.maps.InfoWindow({
+            content: _.map(venue.gigs, function(gig, i) { return gig.date; }).join('<br />')
+          });
+          infowindow.open(map, venue.marker);
+        });
+      });
     }, 'json');
-    
     return false;
   });
   $("#select_gigs").submit();
+  
+  
 });
 </script>
 <% end %>

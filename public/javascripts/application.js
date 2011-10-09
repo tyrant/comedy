@@ -27,10 +27,17 @@ var j=function(a){this._wrapped=a};b.prototype=j.prototype;var r=function(a,c){r
 arguments),this._chain)}});j.prototype.chain=function(){this._chain=!0;return this};j.prototype.value=function(){return this._wrapped}})();
 
 
-google.maps.Map.prototype.venues = new Array();
+venues = [];
 
-google.maps.Map.prototype.addVenue = function(venue) {
-  this.venues[this.venues.length] = venue;
+google.maps.Map.prototype.addVenue = function(new_venue) {
+  this.venues.push(new_venue);
+};
+
+google.maps.Marker.prototype.gigs = new Array();
+
+google.maps.Marker.prototype.addGig = function(new_gig) {
+  console.log(this.gigs.length);
+  this.gigs.push(new_gig);
 };
 
 google.maps.Map.prototype.getVenues = function() {
@@ -38,8 +45,9 @@ google.maps.Map.prototype.getVenues = function() {
 };
 
 google.maps.Map.prototype.clearVenues = function() {
-  _.each(this.venues, function(venue, i) {
+  _.each(document.venues, function(venue, i) {
     venue.setMap(null);
+    venue = null;
   });
   this.venues = [];
 };
@@ -56,13 +64,21 @@ google.maps.Map.prototype.totalGigCount = function() {
   }, 0);
 };
 
-google.maps.Marker.prototype.addGig = function(gig) {
-  if (this.gigs == null) {
-    this.gigs = [];
-  } 
-  this.gigs[this.gigs.length] = gig;
+google.maps.Marker.prototype.venue = null;
+
+google.maps.Marker.prototype.addVenueInfo = function(venue) {
+  this.venue = venue;
 };
 
-google.maps.Marker.prototype.setupInfoWindow = function() {
-  this.markerInfoWindow = new MarkerInfoWindow(this);
+
+
+google.maps.Marker.prototype.getGigs = function() {
+  console.log(this);
+  return this.gigs;
 };
+
+google.maps.Marker.prototype.setInfoWindow = function(infowindow) {
+  this.infowindow = infowindow;
+};
+
+

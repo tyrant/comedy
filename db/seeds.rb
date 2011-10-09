@@ -413,7 +413,7 @@ Gig.create!(
 )
 
 Gig.create!(
-  :comedians => [@jimmycarr]
+  :comedians => [@jimmycarr],
   :tour => @laughtertherapy,
   :date => '2011-11-11',
   :venue => Venue.create!(
@@ -459,7 +459,7 @@ Gig.create!(
 )
 
 @vicarstreet = Venue.create!(
-  :name => 'Vicar Street, Dublin',
+  :name => 'Vicar Street',
   :lat => 53.342673,
   :lng => -6.277732,
   :phone => '+353 1 454 5533',
@@ -536,7 +536,7 @@ Gig.create!(
 )
 
 @derryforum = Venue.create!(
-  :name => 'Millennium Forum, Derry',
+  :name => 'Millennium Forum',
   :lat => 53.270102,
   :lng => -9.057755,
   :phone => '+44 28 7126 4455',
