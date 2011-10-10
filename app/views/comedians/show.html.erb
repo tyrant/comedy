@@ -6,26 +6,43 @@
 </p>
 
 <p>
-  <strong>Gigs:</strong>
-  <% if @comedian.gigs.length > 0 %>
-    <% @comedian.gigs.each do |g| %>
-      <%= link_to g.name, g %>
-    <% end %>
-  <% else %>
-    No gigs
-  <% end %>
-</p>
-
-<p>
   <strong>Tours:</strong>
   <% if @comedian.tours.length > 0 %>
-    <% @comedian.tours.each do |t| %>
-      <%= link_to t.name, t %>
+    <% @comedian.tours.each do |tour| %>
+      <%= link_to tour.name, comedian_tour_path(@comedian, tour) %>
     <% end %>
   <% else %>
     No tours
   <% end %>
 </p>
+
+<p>
+  <strong>Gigs:</strong>
+  <ul>
+    <% if @comedian.gigs.length > 0 %>
+      <% @comedian.gigs.each do |gig| %>
+        <li><%= link_to gig.date, comedian_gig_path(@comedian, gig) %></li>
+      <% end %>
+    <% else %>
+      No gigs
+    <% end %>
+  </ul>
+</p>
+
+<p>
+  <strong>Videos</strong>
+  <ul>
+    <% if @comedian.videos.length > 0 %>
+      <% @comedian.videos.each do |video| %>
+        <li><%= link_to video.name, comedian_video_path(@comedian, video) %></li>
+      <% end %>
+    <% else %>
+      No videos
+    <% end %>
+  </ul>
+</p>
+  
+
 
 
 <%= link_to 'Edit', edit_comedian_path(@comedian) %> |

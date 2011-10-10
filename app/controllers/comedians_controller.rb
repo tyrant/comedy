@@ -5,11 +5,13 @@ class ComediansController < ApplicationController
   end
 
   def show
-    @comedian = Comedian.find(params[:id])
+    @comedian = Comedian.includes(:gigs, :videos).find(params[:id])
   end
 
   def new
     @comedian = Comedian.new
+    @all_tours = Tour.all
+    @all_gigs = Gig.all
   end
 
   def edit

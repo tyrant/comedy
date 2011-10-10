@@ -1,6 +1,13 @@
 <% content_for :map do %>
 <script type="text/javascript">
 $(document).ready(function() {
+  
+  $("#date_range").slider({
+    step: 1,
+    min: <%= @months_ago %>,
+    max: <%= @months_since %>
+  });
+  
   // Quick note: document.venues is a list of map markers - each item in the array contains a Google map
   // marker object, app-specific venue info, and a list of gigs.
   document.venues = [];
@@ -23,13 +30,7 @@ $(document).ready(function() {
     center: new google.maps.LatLng(54.5, -2.0),
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
-  
-  $("#date_range").slider({
-    step: 1,
-    min: <%= @months_ago %>,
-    max: <%= @months_since %>
-  });
-  
+
   // Form submission: update marker list.
   $("#select_gigs").submit(function() {
     var self = $(this);
@@ -37,38 +38,42 @@ $(document).ready(function() {
       // Clear the map of all previous venues and gigs
       clearVenues();
 
-      _.each(gigs, function(object, i) {
-
+      _.each(gigs, function(gig, i) {
         // For each gig returned, see if the gig's venue is added to the map. If so, add the gig
         // to the venue's gigs array; if not, create a new venue marker, then add the gig to it. 
-        if (object.gig.venue != undefined) {
-          var loc = new google.maps.LatLng(object.gig.venue.lat, object.gig.venue.lng);
+        if (gig.venue != undefined) {
+          var loc = new google.maps.LatLng(gig.venue.lat, gig.venue.lng);
           var venue = getVenueForLocation(loc);
-          if (venue == undefined) {
+          if (_.isUndefined(venue)) {
             venue = {
               marker: new google.maps.Marker({
                 position: loc,
                 map: map,
-                title: object.gig.venue.name
+                title: gig.venue.name
               }),
               info: {
-                name: object.gig.venue.name
+                name: gig.venue.name,
+                url: gig.venue.url
               },
               gigs: []
             };
             document.venues.push(venue);
           }
-          //console.log('Venue: ' + venue.info.name + '; gig: ' + object.gig.date);
-          venue.gigs.push(object.gig);
+          venue.gigs.push(gig);
         }
       });
 
       // All venue markers are now placed on the map - add an eventlistener to each one, to open
-      // an infowindow, which shows each gig playing at this venue.
+      // an infowindow, which shows each gig playing at this venue, and by whom.
       _.each(document.venues, function(venue, i) {   
         google.maps.event.addListener(venue.marker, 'click', function() {
           var infowindow = new google.maps.InfoWindow({
-            content: _.map(venue.gigs, function(gig, i) { return gig.date; }).join('<br />')
+            content: '<strong><a href="' + venue.info.url + '">' + venue.info.name + '</a></strong><br />'
+              + _.map(venue.gigs, function(gig, i) {
+                return new Date(gig.date).UTCDayMonth() + ', by ' + _.map(gig.comedians, function(comedian, i) {
+                  return comedian.name;
+                }).join(', ');
+            }).join('<br />')
           });
           infowindow.open(map, venue.marker);
         });

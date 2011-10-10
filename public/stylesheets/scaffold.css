@@ -68,8 +68,7 @@ body {
 }
 
 #user_nav {
-  z-index: 1;
-  position: absolute;
+  /position: absolute;
 }
 
 
@@ -80,7 +79,7 @@ body {
 #select_gigs {
   z-index: 1;
   position: absolute;
-  height: 100px;
+  height: 130px;
   width: 500px;
   bottom: 150px;
   left: 50px;

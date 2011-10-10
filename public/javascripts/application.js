@@ -26,59 +26,8 @@ b.template=function(a,c){var d=b.templateSettings;d="var __p=[],print=function()
 var j=function(a){this._wrapped=a};b.prototype=j.prototype;var r=function(a,c){return c?b(a).chain():a},H=function(a,c){j.prototype[a]=function(){var a=f.call(arguments);D.call(a,this._wrapped);return r(c.apply(b,a),this._chain)}};b.mixin(b);h(["pop","push","reverse","shift","sort","splice","unshift"],function(a){var b=i[a];j.prototype[a]=function(){b.apply(this._wrapped,arguments);return r(this._wrapped,this._chain)}});h(["concat","join","slice"],function(a){var b=i[a];j.prototype[a]=function(){return r(b.apply(this._wrapped,
 arguments),this._chain)}});j.prototype.chain=function(){this._chain=!0;return this};j.prototype.value=function(){return this._wrapped}})();
 
-
-venues = [];
-
-google.maps.Map.prototype.addVenue = function(new_venue) {
-  this.venues.push(new_venue);
-};
-
-google.maps.Marker.prototype.gigs = new Array();
-
-google.maps.Marker.prototype.addGig = function(new_gig) {
-  console.log(this.gigs.length);
-  this.gigs.push(new_gig);
-};
-
-google.maps.Map.prototype.getVenues = function() {
-  return this.venues;
-};
-
-google.maps.Map.prototype.clearVenues = function() {
-  _.each(document.venues, function(venue, i) {
-    venue.setMap(null);
-    venue = null;
-  });
-  this.venues = [];
-};
-
-google.maps.Map.prototype.getVenueForLocation = function(loc) {
-  return _.find(this.venues, function(m) {
-    return m.getPosition().equals(loc);
-  });
-};
-
-google.maps.Map.prototype.totalGigCount = function() {
-  return _.inject(this.markers, function(memo, venue) {
-    return memo + venue.gigs.length;
-  }, 0);
-};
-
-google.maps.Marker.prototype.venue = null;
-
-google.maps.Marker.prototype.addVenueInfo = function(venue) {
-  this.venue = venue;
-};
-
-
-
-google.maps.Marker.prototype.getGigs = function() {
-  console.log(this);
-  return this.gigs;
-};
-
-google.maps.Marker.prototype.setInfoWindow = function(infowindow) {
-  this.infowindow = infowindow;
-};
-
-
+// Needs to add timezone capabilities. UTC-only at this point.
+Date.prototype.UTCDayMonth = function() {
+  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  return this.getDate() + ' ' + months[this.getMonth()];
+}

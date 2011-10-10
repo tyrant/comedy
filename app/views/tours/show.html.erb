@@ -6,8 +6,8 @@
 </p>
 <p>
   <strong>Comedians:</strong>
-  <% if @tour.comedians.length != 0 %>
-    <% @tour.comedians.each do |c| %>
+  <% if @tour.get_comedians.length != 0 %>
+    <% @tour.get_comedians.each do |c| %>
       <%= link_to c.name, c %>
     <% end %>
   <% else %>

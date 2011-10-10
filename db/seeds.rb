@@ -3,6 +3,7 @@ Comedian.all.each { |c| c.destroy }
 Gig.all.each { |g| g.destroy }
 Tour.all.each { |t| t.destroy }
 Venue.all.each { |v| v.destroy }
+Video.all.each { |v| v.destroy }
 
 
 @user1 = User.create!(:email => '1@2.com', :password => 'blargh')
@@ -15,16 +16,24 @@ Venue.all.each { |v| v.destroy }
 @t2 = Tour.create!(:name => 'Comedian 2 moderately good Tour!11111...')
 @t3 = Tour.create!(:name => 'Both together now')
 
-@g1 = Gig.create!(:comedians => [@c1], :tour => @t1, :name => 'Gig 1')
-@g2 = Gig.create!(:comedians => [@c1], :tour => @t1, :name => 'Gig 2')
-@g3 = Gig.create!(:comedians => [@c1], :tour => @t1, :name => 'Gig 3')
-@g4 = Gig.create!(:comedians => [@c1], :tour => @t1, :name => 'Gig 4')
-@g5 = Gig.create!(:comedians => [@c1], :tour => @t1, :name => 'Gig 5')
-@g6 = Gig.create!(:comedians => [@c1], :tour => @t1, :name => 'Gig 6')
-@g7 = Gig.create!(:comedians => [@c1], :tour => @t1, :name => 'Gig 7')
-@g8 = Gig.create!(:comedians => [@c1], :tour => @t1, :name => 'Gig 8')
-@g9 = Gig.create!(:comedians => [@c1], :tour => @t1, :name => 'Gig 9')
-@g10 = Gig.create!(:comedians => [@c1], :tour => @t1, :name => 'Gig 10')
+@vicarstreet = Venue.create!(
+  :name => 'Vicar Street',
+  :lat => 53.342673,
+  :lng => -6.277732,
+  :phone => '+353 1 454 5533',
+  :url => 'http://www.ticketmaster.ie/search?tm_link=tm_homeA_header_search&q=dylan+moran&search.x=0&search.y=0'
+)
+
+@g1 = Gig.create!(:comedians => [@c1], :tour => @t1, :name => 'Gig 1', :venue => @vicarstreet)
+@g2 = Gig.create!(:comedians => [@c1], :tour => @t1, :name => 'Gig 2', :venue => @vicarstreet)
+@g3 = Gig.create!(:comedians => [@c1], :tour => @t1, :name => 'Gig 3', :venue => @vicarstreet)
+@g4 = Gig.create!(:comedians => [@c1], :tour => @t1, :name => 'Gig 4', :venue => @vicarstreet)
+@g5 = Gig.create!(:comedians => [@c1], :tour => @t1, :name => 'Gig 5', :venue => @vicarstreet)
+@g6 = Gig.create!(:comedians => [@c1], :tour => @t1, :name => 'Gig 6', :venue => @vicarstreet)
+@g7 = Gig.create!(:comedians => [@c1], :tour => @t1, :name => 'Gig 7', :venue => @vicarstreet)
+@g8 = Gig.create!(:comedians => [@c1], :tour => @t1, :name => 'Gig 8', :venue => @vicarstreet)
+@g9 = Gig.create!(:comedians => [@c1], :tour => @t1, :name => 'Gig 9', :venue => @vicarstreet)
+@g10 = Gig.create!(:comedians => [@c1], :tour => @t1, :name => 'Gig 10', :venue => @vicarstreet)
 
 @g11 = Gig.create!(:comedians => [@c2], :tour => @t2, :name => 'Gig 11')
 @g12 = Gig.create!(:comedians => [@c2], :tour => @t2, :name => 'Gig 12')
@@ -46,7 +55,43 @@ Venue.all.each { |v| v.destroy }
 @jimmycarr = Comedian.create!(:user => @user1, :name => 'Jimmy Carr')
 
 @laughtertherapy = Tour.create!(:name => 'Laughter Therapy')
- 
+
+Video.create!(
+  :comedian => @jimmycarr,
+  :name => 'Jimmy Carr Live At The Apollo Part 1',
+  :url => 'http://www.youtube.com/watch?v=1YxAGx0Dq1E'
+)
+
+Video.create!(
+  :comedian => @jimmycarr,
+  :name => 'Most Offensive Jokes by Jimmy Carr',
+  :url => 'http://www.youtube.com/watch?v=SagayzX2T7Y'
+)
+
+Video.create!(
+  :comedian => @jimmycarr,
+  :name => 'jimmy carr owns heckler',
+  :url => 'http://www.youtube.com/watch?v=1ioBZ5fNJO8'
+)
+
+Video.create!(
+  :comedian => @jimmycarr,
+  :name => 'JIMMY CARR',
+  :url => 'http://www.youtube.com/watch?v=ZJyi1wtvfHQ'
+)
+
+Video.create!(
+  :comedian => @jimmycarr,
+  :name => 'Jimmy Carr Live At The Apollo',
+  :url => 'http://www.youtube.com/watch?v=8OJKyZzMS2A'
+)
+
+Video.create!(
+  :comedian => @jimmycarr,
+  :name => 'Jimmy Carr VS Hecklers - ULTIMATE 10 minute Comedy Compilation! Must see - HecklerBlog',
+  :url => 'http://www.youtube.com/watch?v=PzLILM7Rgm8'
+)
+
 Gig.create!(
   :comedians => [@jimmycarr],
   :tour => @laughtertherapy, 
@@ -429,6 +474,187 @@ Gig.create!(
     
     
 @dylanmoran = Comedian.create!(:user => @user1, :name => 'Dylan Moran')
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Dylan Moran on Germany',
+  :url => 'http://www.youtube.com/watch?v=IoLIU2NI66w'
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Dylan Moran - What It Is - Live Part 1',
+  :url => 'http://www.youtube.com/watch?v=eY0A-15JQ8k'
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Dylan Moran - What It Is - Live Part 2',
+  :url => 'http://www.youtube.com/watch?v=gmpnuVAOmKo'
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Dylan Moran - What It Is - Live Part 3',
+  :url => 'http://www.youtube.com/watch?v=KuKKMBch--s'
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Dylan Moran - What It Is - Live Part 4',
+  :url => 'http://www.youtube.com/watch?v=TxDFEjFC9so'
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Dylan Moran - What It Is - Live Part 5',
+  :url => 'http://www.youtube.com/watch?v=1R42AvPi_iY'
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Dylan Moran - What It Is - Live Part 6',
+  :url => 'http://www.youtube.com/watch?v=Ob8Eoknrjd4'
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Dylan Moran - What It Is - Live Part 7',
+  :url => 'http://www.youtube.com/watch?v=4_yEoTwfyRo'
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Dylan Moran - What It Is - Live Part 8',
+  :url => 'http://www.youtube.com/watch?v=EkCxHoeaHgo'
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Dylan Moran, Australia, The "English" voice',
+  :url => 'http://www.youtube.com/watch?v=x_43-4xjnVA'
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Dylan Moran on Arnold Schwarzenegger (Like Totally)',
+  :url => 'http://www.youtube.com/watch?v=wlLpCh-IE54',
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Dylan Moran - Potential (Monster)',
+  :url => 'http://www.youtube.com/watch?v=yNKoH84ioz0'
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Dylan Moran - Women have no feelings',
+  :url => 'http://www.youtube.com/watch?v=kUH34iqK7cI'
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Dylan Moran',
+  :url => 'http://www.youtube.com/watch?v=Lo2JRS2KoPM'
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Dylan Moran - French',
+  :url => 'http://www.youtube.com/watch?v=AZWZZRZDcSQ'
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Dylan Moran - Americans',
+  :url => 'http://www.youtube.com/watch?v=M6K8yfQYOTQ'
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Dylan Moran on kids parties',
+  :url => 'http://www.youtube.com/watch?v=eAMtKpOTuM4'
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Dylan Moran Stand Up',
+  :url => 'http://www.youtube.com/watch?v=0CQWA-fjqUM'
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'dylan moran - rejection',
+  :url => 'http://www.youtube.com/watch?v=oS1NOXWVWgo'
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Dylan Moran on Americans',
+  :url => 'http://www.youtube.com/watch?v=N0rUtSLZTIc'
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Aim Low: The Best of Dylan Moran',
+  :url => 'http://www.youtube.com/watch?v=tFswr6QI-py'
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Dylan Moran on Music',
+  :url => 'http://www.youtube.com/watch?v=9dkeAcbXStc'
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Dylan Moran on Chat Show Interview Part One Of Two',
+  :url => 'http://www.youtube.com/watch?v=PUIGLvPHMeA'
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Dylan Moran on Chat Show Interview Part Two Of Two',
+  :url => 'http://www.youtube.com/watch?v=N7YuzTzxqrU'
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Dylan Moran on Music',
+  :url => 'http://www.youtube.com/watch?v=0dkeAcbXStc'
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Dylan Moran Gardening Gardening Death - What it is Live 2009.mov',
+  :url => 'http://www.youtube.com/watch?v=QIPpxIpE_uo'
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Dylan Moran - Gardening, Gardening, Gardening, Death!!!',
+  :url => 'http://www.youtube.com/watch?v=aunrJ5CXVMw'
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Dylan Moran - "And then the cage comes down!"',
+  :url => 'http://www.youtube.com/watch?v=wbObXYMHVHE'
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Dylan Moran - Hangovers (Monster)',
+  :url => 'http://www.youtube.com/watch?v=87Rh-eq6YOM'
+)
+
+Video.create!(
+  :comedian => @dylanmoran,
+  :name => 'Dylan Moran Stand Up',
+  :url => 'http://www.youtube.com/watch?v=0CQWA-fjqUM'
+)
+
 @yeahyeah = Tour.create!(:name => 'yeah, yeah')
 @canberra = Venue.create!(
   :name => "Canberra Theatre",
@@ -458,13 +684,7 @@ Gig.create!(
   :venue => @palaistheatre
 )
 
-@vicarstreet = Venue.create!(
-  :name => 'Vicar Street',
-  :lat => 53.342673,
-  :lng => -6.277732,
-  :phone => '+353 1 454 5533',
-  :url => 'http://www.ticketmaster.ie/search?tm_link=tm_homeA_header_search&q=dylan+moran&search.x=0&search.y=0'
-)
+
 Gig.create!(
   :comedians => [@dylanmoran],
   :tour => @yeahyeah,
